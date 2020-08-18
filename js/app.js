@@ -11,12 +11,20 @@ var parentArr = [parentElement1, parentElement2, parentElement3];
 
 var stuffArr = [];
 
+var totalClick = 0;
+
+var maxClick = 25;
+
+
+
 class Stuff {
   constructor(filePath, alt) {
 
     this.filePath = filePath;
     this.alt = alt;
     this.clicks = 0;
+    this.shown = 0;
+
 
     stuffArr.push(this);
   }
