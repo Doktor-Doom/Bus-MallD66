@@ -11,17 +11,18 @@ var parentArr = [parentElement1, parentElement2, parentElement3];
 
 var stuffArr = [];
 
-var totalClick = 0;
+// var totalClick = 0;
 
-var maxClick = 25;
+// var maxClick = 25;
 
 
 
 class Stuff {
-  constructor(filePath, alt) {
+  constructor(filePath, alt, name) {
 
     this.filePath = filePath;
     this.alt = alt;
+    this.name = name;
     this.clicks = 0;
     this.shown = 0;
 
@@ -37,17 +38,17 @@ new Stuff('img/boots.jpg', 'boots', 'boots');
 new Stuff('img/breakfast.jpg', 'breakfast', 'breakfast');
 new Stuff('img/bubblegum.jpg', 'bubblegum', 'bubblegum');
 new Stuff('img/chair.jpg', 'chair', 'chair');
-new Stuff('img/cthulu.jpg', 'cthulu', 'cthulu');
+new Stuff('img/cthulhu.jpg', 'cthulu', 'cthulu');
 new Stuff('img/dog-duck.jpg', 'dog-duck', 'dog-duck');
 new Stuff('img/dragon.jpg', 'dragon', 'dragon');
 new Stuff('img/pen.jpg', 'pen', 'pen');
 new Stuff('img/pet-sweep.jpg', 'pet-sweep', 'pet-sweep');
 new Stuff('img/scissors.jpg', 'scissors', 'scissors');
 new Stuff('img/shark.jpg', 'shark', 'shark');
-new Stuff('img/sweep.jpg', 'sweep', 'sweep');
+new Stuff('img/sweep.png', 'sweep', 'sweep');
 new Stuff('img/tauntaun.jpg', 'tauntaun', 'tauntaun');
 new Stuff('img/unicorn.jpg', 'unicorn', 'unicorn');
-new Stuff('img/usb.jpg', 'usb', 'usb');
+new Stuff('img/usb.gif', 'usb', 'usb');
 new Stuff('img/water-can.jpg', 'water-can', 'water-can');
 new Stuff('img/wine-glass.jpg', 'wine-glass', 'wine-glass');
 
@@ -90,16 +91,17 @@ function randoPics() {
 
 }
 
-function handleClick(event) {
-  var alt = event.target.alt;
+// function handleClick(event) {
+//   var alt = event.target.alt;
 
-  for (var i = 0; i < parentArr.length; i++){
-    var alt = event.target.alt;
-    parentArr[i].innerHTML = '';
-  }
-  console.log('event target alt', event.target.alt);
-  randoPics();
-}
+//   for (var i = 0; i < parentArr.length; i++){
+//     var alt = event.target.alt;
+//     parentArr[i].innerHTML = ''; 
+//   }
+//   console.log('event target alt', event.target.alt);
+//   randoPics();
+// }
 
 parentSection.addEventListener('click', handleClick);
 randoPics();
+

@@ -2,8 +2,13 @@
 
 img {
   align-content: center;
-  width: 450px;
+  width: 300px;
   margin: 30px;
   /* border: 5px; */
   border: 5px;
+}
+
+ul {
+  display: flex;
+
 }
