@@ -91,7 +91,84 @@ function randoPics() {
 
 }
 
+Stuff.nameData = [];
+Stuff.voteData = [];
 
+var grabChartData = function () {
+  for (var i = 0; i < stuffArr.length; i++){
+    Stuff.nameData.push(stuffArr[i].name);
+    Stuff.voteData.push(stuffArr[i].votes);
+  }
+};
+
+var grabChart = function (){
+  grabChartData();
+  var ctx = document.getElementById('myChart').getContext('2d');
+  // var myChart = new Chart(ctx, {
+  //   type: 'bar',
+    data: {
+      labels: Stuff.nameData,
+      datasets: [{
+        label: 'Popularity',
+        data: Stuff.voteData,
+        backgroundColor: [
+          'rgba(54, 122, 235, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(55, 99, 132, 0.2)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 19, 64, 1)',
+          'rgba(25, 119, 164, 0.2)',
+          'rgba(2, 149, 132, 1)',
+          'rgba(54, 162, 35, 1)',
+          'rgba(255, 126, 186, 1)',
+          'rgba(75, 192, 92, 1)',
+          'rgba(13, 102, 255, 1)',
+          'rgba(254, 162, 235, 0.2)',
+          'rgba(54, 162, 25, 1)',
+          'rgba(255, 120, 86, 0.2)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(75, 192, 92, 0.2)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 206, 86, 1)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 5
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+//   });
+// };
 
 // function handleClick(event) {
 //   var alt = event.target.alt;
