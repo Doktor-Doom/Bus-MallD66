@@ -91,6 +91,8 @@ function randoPics() {
 
 }
 
+
+
 // function handleClick(event) {
 //   var alt = event.target.alt;
 
