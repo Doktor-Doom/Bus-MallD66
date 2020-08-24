@@ -12,3 +12,53 @@ ul {
   display: flex;
 
 }
+ 
+body{
+  width: 960px;
+  background-color: bisque;
+}
+
+/* #image_container{
+  display: inline;
+} */
+
+/* #center:hover{
+  border: 3px solid darkorange;
+} */
+
+/* #image_container{
+  text-align: center;
+} */
+
+/* img{
+  width: 300px;
+  height: 300px;
+} */
+
+/* #image_container img:hover{
+  border-color: blue;
+  border-radius: 0%;
+  transform: rotate3d(1,1,1,30deg)
+} */
+
+/* #image_container *{
+  border: 5px dashed red;
+  border-radius: 100%;
+} */
+
+h1{
+  font-size: 30px;
+  text-decoration: underline wavy blue;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p{
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+}
+
+#bottom{
+  margin-bottom: 20px;
+}

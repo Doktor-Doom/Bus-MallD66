@@ -1,6 +1,5 @@
 'use strict'
 
-// var randomNum
 var parentSection = document.getElementById('rando');
 
 var parentElement1 = document.getElementById('stuff1');
@@ -11,7 +10,8 @@ var parentArr = [parentElement1, parentElement2, parentElement3];
 
 var stuffArr = [];
 
-// var totalClick = 0;
+Stuff.totalClick = 0;
+Stuff.uniqueArray = [];
 
 // var maxClick = 25;
 
@@ -26,35 +26,56 @@ class Stuff {
     this.clicks = 0;
     this.shown = 0;
 
-
     stuffArr.push(this);
   }
 }
 
-new Stuff('img/bag.jpg', 'bag', 'bag');
-new Stuff('img/banana.jpg', 'banana', 'banana');
-new Stuff('img/bathroom.jpg', 'bathroom', 'bathroom');
-new Stuff('img/boots.jpg', 'boots', 'boots');
-new Stuff('img/breakfast.jpg', 'breakfast', 'breakfast');
-new Stuff('img/bubblegum.jpg', 'bubblegum', 'bubblegum');
-new Stuff('img/chair.jpg', 'chair', 'chair');
-new Stuff('img/cthulhu.jpg', 'cthulu', 'cthulu');
-new Stuff('img/dog-duck.jpg', 'dog-duck', 'dog-duck');
-new Stuff('img/dragon.jpg', 'dragon', 'dragon');
-new Stuff('img/pen.jpg', 'pen', 'pen');
-new Stuff('img/pet-sweep.jpg', 'pet-sweep', 'pet-sweep');
-new Stuff('img/scissors.jpg', 'scissors', 'scissors');
-new Stuff('img/shark.jpg', 'shark', 'shark');
-new Stuff('img/sweep.png', 'sweep', 'sweep');
-new Stuff('img/tauntaun.jpg', 'tauntaun', 'tauntaun');
-new Stuff('img/unicorn.jpg', 'unicorn', 'unicorn');
-new Stuff('img/usb.gif', 'usb', 'usb');
-new Stuff('img/water-can.jpg', 'water-can', 'water-can');
-new Stuff('img/wine-glass.jpg', 'wine-glass', 'wine-glass');
+function getRandomNum() {
+  return Math.floor(Math.random() * stuffArr.length);
+}
 
+function uniqueGen() {
+  while (Stuff.uniqueArray.length < 6) {
+    var random = getRandomNum();
+    while (!Stuff.uniqueArray.includes(random)) {
+      Stuff.uniqueArray.push(random);
+    }
+  }
+}
 
-function getRandomNum(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+function showPics() {
+  uniqueGen();
+  for (var i = 0; i < Stuff.uniqueArray.length; i++) {
+    //value of the first index of the array is removed and set as the variable 'temp' and replaced at each iteration of the loop
+    var temp = Stuff.uniqueArray.shift();
+    console.log('The Temp is #: ', temp);
+    //sets the id of the product at the current index
+    Stuff.pics[i].src = stuffArr[temp].path;
+    //sets the id of the product at the current index
+    Stuff.pics[i].id = stuffArr[temp].name;
+    stuffArr[temp].views += 1;
+  }
+}
+
+function handleClick(event) {
+  var choseImage = event.target.title;
+  if (Stuff.totalClick === 25){
+    parentSection.removeEventListener('click', handleClick);
+    parentElement1.setAttribute('hidden', true);
+    parentElement2.setAttribute('hidden', true);
+    parentElement3.setAttribute('hidden', true);
+    localStorage.setItem('data', ('stuffArr'));
+    localStorage.setItem('data', JSON.stringify(stuffArr));
+    grabChart();
+  }
+  for (var i = 0; i < stuffArr.length; i++){
+    if (stuffArr[i].name === choseImage) {
+      stuffArr[i].votes++;
+    }
+  }
+  Stuff.totalClick++;
+  randoPics();
+  showPics();
 }
 
 function randoPics() {
@@ -72,9 +93,9 @@ function randoPics() {
     randoIndex3 = getRandomNum(stuffArr.length);
   }
 
-  var imgElement1 = document.createElement('img')
-  var imgElement2 = document.createElement('img')
-  var imgElement3 = document.createElement('img')
+  var imgElement1 = document.createElement('img');
+  var imgElement2 = document.createElement('img');
+  var imgElement3 = document.createElement('img');
 
   imgElement1.setAttribute('src', choseImg1.filePath);
   imgElement1.setAttribute('alt', imgElement1.alt);
@@ -91,6 +112,40 @@ function randoPics() {
 
 }
 
+if (localStorage.data) {
+  var storeAllStuff = localStorage.getItem('data');
+
+  var parseAllStuff = JSON.parse(storeAllStuff);
+  for (var i = 0; i < parseAllStuff.length; i++){
+    var newStuff = new Stuff(parseAllStuff[i].name);
+    newStuff.views = parseAllStuff[i].views;
+    newStuff.votes = parseAllStuff[i].votes;
+  }
+} else {
+
+  new Stuff('img/bag.jpg', 'bag', 'bag');
+  new Stuff('img/banana.jpg', 'banana', 'banana');
+  new Stuff('img/bathroom.jpg', 'bathroom', 'bathroom');
+  new Stuff('img/boots.jpg', 'boots', 'boots');
+  new Stuff('img/breakfast.jpg', 'breakfast', 'breakfast');
+  new Stuff('img/bubblegum.jpg', 'bubblegum', 'bubblegum');
+  new Stuff('img/chair.jpg', 'chair', 'chair');
+  new Stuff('img/cthulhu.jpg', 'cthulu', 'cthulu');
+  new Stuff('img/dog-duck.jpg', 'dog-duck', 'dog-duck');
+  new Stuff('img/dragon.jpg', 'dragon', 'dragon');
+  new Stuff('img/pen.jpg', 'pen', 'pen');
+  new Stuff('img/pet-sweep.jpg', 'pet-sweep', 'pet-sweep');
+  new Stuff('img/scissors.jpg', 'scissors', 'scissors');
+  new Stuff('img/shark.jpg', 'shark', 'shark');
+  new Stuff('img/sweep.png', 'sweep', 'sweep');
+  new Stuff('img/tauntaun.jpg', 'tauntaun', 'tauntaun');
+  new Stuff('img/unicorn.jpg', 'unicorn', 'unicorn');
+  new Stuff('img/usb.gif', 'usb', 'usb');
+  new Stuff('img/water-can.jpg', 'water-can', 'water-can');
+  new Stuff('img/wine-glass.jpg', 'wine-glass', 'wine-glass');
+
+}
+
 Stuff.nameData = [];
 Stuff.voteData = [];
 
@@ -103,13 +158,13 @@ var grabChartData = function () {
 
 var grabChart = function (){
   grabChartData();
-  var ctx = document.getElementById('myChart').getContext('2d');
-  // var myChart = new Chart(ctx, {
-  //   type: 'bar',
+  var ctx = document.getElementById('chart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bar',
     data: {
       labels: Stuff.nameData,
       datasets: [{
-        label: 'Popularity',
+        label: 'Popular',
         data: Stuff.voteData,
         backgroundColor: [
           'rgba(54, 122, 235, 0.2)',
@@ -167,8 +222,8 @@ var grabChart = function (){
         }]
       }
     }
-//   });
-// };
+  });
+};
 
 // function handleClick(event) {
 //   var alt = event.target.alt;
